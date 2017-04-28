@@ -1,0 +1,70 @@
+###What is the difference between a package, library and function?
+```{r echo=FALSE, results='asis'}
+text <- "PACKAGE: A package in R is a collection of R functions, compiled code and data.\n
+LIBRARY: The location where R is stored in called a library.\n 
+FUNCTIONS: A function is a piece of code written to carry out a specified task; it may accept arguments or parameters (or not) and it may return one or more values (or not!)."
+mycat <- function(text){
+  cat(gsub(pattern = "\n", replacement = "  \n", x = text))
+}
+mycat(text)
+
+```
+
+###What are some ways you can find more information R packages or datasets?
+```{r echo=FALSE, results='asis'}
+text2 <- "One can use help.search() or the shorthand ??. This will search the help files of installed packages.\n
+One can use find() or the shorthand ?find. This will search the datasets.\n "
+mycat <- function(text2){
+  cat(gsub(pattern = "\n", replacement = "  \n", x = text2))
+}
+mycat(text2)
+
+```
+
+
+```{r}
+install.packages("doBy")
+library(doBy)
+install.packages("tidyverse")
+library(dplyr)
+
+```
+
+```{r}
+install.packages("ISLR")
+library(ISLR)
+?Auto
+auto_frame <- data.frame(Auto)
+fix(auto_frame)
+head(auto_frame)
+summary(auto_frame)
+dim(auto_frame)
+```
+
+
+```{r}
+library(doBy)
+avempg_year_cyl <- data.frame(auto_frame)
+summaryBy(mpg ~ year + cylinders, data = auto_frame, FUN = function(x) { c(mean = mean(x)) } )
+head(avempg_year_cyl)
+```
+
+```{r}
+library(dplyr)
+dplyr::tbl_df(Auto)
+dplyr::summarise_each(Auto, funs(mean))
+                      
+```
+
+###Which did you like better and why?
+```{r echo=FALSE, results='asis'}
+text3 <- "According to me, dplyr is better due to its simplicity of syntax and easy to understand.\n
+Also the amount of code to write is short. The tbl_df object gives a nice summary view of the data.\n
+The summarise() gives a single liner view of the entire data set which is convenient to read and understand."
+mycat <- function(text3){
+  cat(gsub(pattern = "\n", replacement = "  \n", x = text3))
+}
+mycat(text3)
+
+```
+
